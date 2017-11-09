@@ -1,5 +1,5 @@
-
-import React, {PropTypes} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import {
   ListView
@@ -8,6 +8,14 @@ import {
 import KeyboardAwareBase from './KeyboardAwareBase'
 
 export default class KeyboardAwareListView extends KeyboardAwareBase {
+  static propTypes = {
+    onScroll: PropTypes.func
+  }
+
+  static defaultProps = {
+    ...KeyboardAwareBase.defaultProps
+  }
+
   render() {
     const initialOpacity = this.props.startScrolledToBottom ? 0 : 1;
     return (
@@ -34,11 +42,3 @@ export default class KeyboardAwareListView extends KeyboardAwareBase {
     );
   }
 }
-
-KeyboardAwareListView.propTypes = {
-  onScroll: PropTypes.func
-};
-
-KeyboardAwareListView.defaultProps = {
-  ...KeyboardAwareBase.defaultProps
-};

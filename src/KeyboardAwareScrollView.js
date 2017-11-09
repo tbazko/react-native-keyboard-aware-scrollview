@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import {
   ScrollView
@@ -7,6 +8,18 @@ import {
 import KeyboardAwareBase from './KeyboardAwareBase'
 
 export default class KeyboardAwareScrollView extends KeyboardAwareBase {
+  static propTypes = {
+    getTextInputRefs: PropTypes.func,
+    onScroll: PropTypes.func
+  }
+
+  static defaultProps = {
+    ...KeyboardAwareBase.defaultProps,
+    getTextInputRefs: () => {
+      return [];
+    }
+  }
+
   render() {
     return (
       <ScrollView {...this.props} {...this.style}
@@ -31,14 +44,3 @@ export default class KeyboardAwareScrollView extends KeyboardAwareBase {
     );
   }
 }
-
-KeyboardAwareScrollView.propTypes = {
-  getTextInputRefs: PropTypes.func,
-  onScroll: PropTypes.func
-};
-KeyboardAwareScrollView.defaultProps = {
-  ...KeyboardAwareBase.defaultProps,
-  getTextInputRefs: () => {
-    return [];
-  }
-};
